@@ -1,3 +1,5 @@
+from User import User
+
 def check_victory() -> int:
 	""" Returns number of points won (no victory -> 0) """
 	points = 0
@@ -20,7 +22,7 @@ def hash_password(username: str, password: str) -> str:
 	return hashlib.md5(str(hash(username + cfg_salt)))
 
 
-def identify_user(data -> dict) -> User:
+def identify_user(data: dict) -> User:
 	"""
 	Returns user objects (creates if necessary) that matches user data or None
 	if submitted data is incorrect or incomplete

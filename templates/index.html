@@ -10,11 +10,13 @@
 		<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 		<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 		<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
-		<script src="{{ url_for('static', 'vincit2020.js' }}" type="text/babel"></script>
+		<script src="{{ url_for('static', filename='react_components.js') }}" type="text/babel"></script>
+		<script src="{{ url_for('static', filename='vincit2020.js') }}" type="text/babel"></script>
 	</head>
 
 	<body>
 		<div id="content"></div>
+		<script>render_login();</script>
 	</body>
 
 </html>
