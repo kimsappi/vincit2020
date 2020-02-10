@@ -4,8 +4,6 @@ import json
 import config
 from User import User
 
-import sys
-
 def check_victory(counter: int) -> int:
 	""" Returns number of points won (no victory -> 0) """
 	points = 0
@@ -39,7 +37,7 @@ def identify_user(data: dict, users: dict) -> User:
 	username = data.get("username")
 	password = data.get("password")
 	user = users.get(username)
-	if user: # We already have data for the user
+	if user: # We already have data for the username
 		if not user.validate_password(password):
 			return None
 	else: # Create new user

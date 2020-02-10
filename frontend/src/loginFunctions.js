@@ -21,14 +21,14 @@ function submitLogin() {
 		username: window.username,
 		password: window.password
 	}
-	
+
 	fetch("/login", {
 		method: "post",
 		headers: new Headers({'content-type': 'application/json'}),
 		body: JSON.stringify(loginData)
 	})
 	.then((response) => { return response.json(); })
-	.then((data) => {console.log(data); loginResponse(data); });
+	.then((data) => { loginResponse(data); });
 }
 
 export default submitLogin;

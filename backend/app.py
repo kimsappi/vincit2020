@@ -4,7 +4,6 @@ import config
 import utils
 from User import User
 
-
 app = Flask(__name__)
 g_users = {} # Could use a DB to store users and points, but this will do for now
 			# Dict is fast
@@ -31,7 +30,9 @@ def begin_game():
 
 @app.route("/click", methods=["POST"])
 def click():
-	user = utils.identify_user(request.form, g_users)
+	global g_counter
+
+	user = utils.identify_user(request.get_data(), g_users)
 	if user:
 		click_success = user.click()
 		if click_success: # User had points, click successful
@@ -46,6 +47,20 @@ def click():
 		return jsonify	(
 							user_points=user.points,
 							victory_points=victory_points,
+							points_to_win=points_to_win
+						)
+	else:
+		return jsonify(False)
+
+
+@app.route("/reset", methods=["POST"])
+def reset_points():
+	user = utils.identify_user(request.get_data(), g_users)
+	if user:
+		user.reset_points()
+		points_to_win = utils.get_points_to_next_win(g_counter)
+		return jsonify	(
+							user_points=user.points,
 							points_to_win=points_to_win
 						)
 	else:

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import LoginForm from './LoginForm';
 import * as serviceWorker from './serviceWorker';
-import submitLogin from './functions.js';
+import submitLogin from './loginFunctions.js';
 
 ReactDOM.render(<LoginForm />, document.getElementById('root'));
 document.getElementById("login").addEventListener("click", submitLogin);

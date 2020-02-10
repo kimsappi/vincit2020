@@ -30,7 +30,7 @@ class User():
 			return False
 
 	def validate_password(self, password: str) -> bool:
-		return password == utils.hash_password(self.username, password)
+		return self.password == utils.hash_password(self.username, password)
 
 	def victory(self, points: int) -> None:
 		self.points += points
