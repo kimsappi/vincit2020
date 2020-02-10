@@ -2,19 +2,19 @@ import React from 'react';
 
 function LoginForm() {
 	return (
-		<form action="login" method="POST">
+		<>
 			<div>
-				<label for="username">Username </label>
-				<input type="text" name="username" id="username" />
+				<label for="username">Username</label>
+				<input type="text" name="username" id="login_username" />
 			</div>
 			<div>
-				<label for="password">Password </label>
-				<input type="password" name="password" id="password" />
+				<label for="password">Password</label>
+				<input type="password" name="password" id="login_password" />
 			</div>
 			<div>
-				<input type="submit" value="Submit" />
+				<input type="submit" value="Submit" id="login" />
 			</div>
-		</form>
+		</>
 	);
 }
 

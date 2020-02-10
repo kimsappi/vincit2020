@@ -1,7 +1,10 @@
 import hashlib
+import json
 
 import config
 from User import User
+
+import sys
 
 def check_victory(counter: int) -> int:
 	""" Returns number of points won (no victory -> 0) """
@@ -32,6 +35,7 @@ def identify_user(data: dict, users: dict) -> User:
 	if submitted data is incorrect or incomplete
 	"""
 	#try:
+	data = json.loads(data.decode("utf-8"))
 	username = data.get("username")
 	password = data.get("password")
 	user = users.get(username)

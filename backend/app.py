@@ -18,11 +18,12 @@ def index():
 
 @app.route("/login", methods=["POST"])
 def begin_game():
-	user = utils.identify_user(request.form, g_users)
+	user = utils.identify_user(request.get_data(), g_users)
 	if user:
 		points_to_win = utils.get_points_to_next_win(g_counter)
-		return jsonify(user_points=user.points,
-						points_to_win=points_to_win
+		return jsonify	(
+							user_points=user.points,
+							points_to_win=points_to_win
 						)
 	else:
 		return jsonify(False)
@@ -34,6 +35,7 @@ def click():
 	if user:
 		click_success = user.click()
 		if click_success: # User had points, click successful
+			g_counter += 1
 			victory_points = utils.check_victory(g_counter)
 		else: # No points left
 			victory_points = 0
@@ -41,9 +43,10 @@ def click():
 			user.add_victory(victory_points)
 
 		points_to_win = utils.get_points_to_next_win(g_counter)
-		return jsonify(user_points=user.points,
-						victory_points=victory_points,
-						points_to_win=points_to_win
+		return jsonify	(
+							user_points=user.points,
+							victory_points=victory_points,
+							points_to_win=points_to_win
 						)
 	else:
 		return jsonify(False)
