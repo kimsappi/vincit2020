@@ -1,31 +1,13 @@
-import hashlib
-
 from flask import Flask, jsonify, request, render_template
 
+import config
 import utils
 from User import User
-
-""" Configuration data """
-cfg_salt = "m4ximal$3cur1ty"
-cfg_initial_points = 20
-cfg_victory_breakpoints =	{
-								10: 	5,
-								100: 	40,
-								500: 	250
-							}	
-"""
-About cfg_victory_breakpoints:
-Key: Clicks required to win.
-Value: Points given for victory.
-Must be in ascending order by key.
-If other breakpoints aren't multiples of first breakpoint, fix '#BREAKPOINTLOGIC'.
-Value shouldn't be 0 (winning 0 points wouldn't be very fun anyway).
-"""
 
 
 app = Flask(__name__)
 g_users = {} # Could use a DB to store users and points, but this will do for now
-			# Dict because gotta go fast #PrematureOptimisation #WrongLanguage
+			# Dict is fast
 g_counter = 0 # Could use a DB
 
 
@@ -36,10 +18,11 @@ def index():
 
 @app.route("/login", methods=["POST"])
 def begin_game():
-	user = utils.identify_user(request.form)
+	user = utils.identify_user(request.form, g_users)
 	if user:
+		points_to_win = utils.get_points_to_next_win(g_counter)
 		return jsonify(user_points=user.points,
-						points_to_win=utils.get_points_to_next_win()
+						points_to_win=points_to_win
 						)
 	else:
 		return jsonify(False)
@@ -47,15 +30,21 @@ def begin_game():
 
 @app.route("/click", methods=["POST"])
 def click():
-	user = utils.identify_user(request.form)
+	user = utils.identify_user(request.form, g_users)
 	if user:
-		user.click()
-		victory_points = check_victory()
+		click_success = user.click()
+		if click_success: # User had points, click successful
+			victory_points = utils.check_victory(g_counter)
+		else: # No points left
+			victory_points = 0
 		if victory_points:
 			user.add_victory(victory_points)
+
+		points_to_win = utils.get_points_to_next_win(g_counter)
 		return jsonify(user_points=user.points,
 						victory_points=victory_points,
-						points_to_win=utils.get_points_to_next_win())
+						points_to_win=points_to_win
+						)
 	else:
 		return jsonify(False)
 
