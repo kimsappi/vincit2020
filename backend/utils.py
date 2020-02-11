@@ -24,7 +24,8 @@ def get_points_to_next_win(counter: int) -> int:
 
 def hash_password(username: str, password: str) -> str:
 	""" Returns salted password hash for given username and password """
-	return hashlib.md5(str(hash(username + config.salt)).encode("utf-8")).hexdigest()
+	salt = hashlib.md5((username + config.salt).encode("utf-8")).hexdigest()
+	return hashlib.sha256((password + salt).encode("utf-8")).hexdigest()
 
 
 def identify_user(data: dict, users: dict) -> User:

@@ -9,7 +9,10 @@ class User():
 		self.resets = 0
 		self.victories = {points: 0 for points in iter(config.victory_breakpoints.values())}
 
-		users[username] = self
+		users[username] = self # Add to global user dict
+
+	def __lt__(self, other) -> bool: # Sort users by points
+		return self.points < other.points
 
 	def add_victory(self, points: int) -> None:
 		self.points += points
@@ -21,6 +24,14 @@ class User():
 			return True
 		else:
 			return False
+
+	def public_data_to_dict(self) -> dict:
+		return {
+			"username": self.username,
+			"points": self.points,
+			"resets": self.resets,
+			"victories": self.victories
+		}
 	
 	def reset_points(self) -> bool:
 		if self.points < 1:

@@ -20,10 +20,7 @@ def begin_game():
 	user = utils.identify_user(request.get_data(), g_users)
 	if user:
 		points_to_win = utils.get_points_to_next_win(g_counter)
-		return jsonify	(
-							user_points=user.points,
-							points_to_win=points_to_win
-						)
+		return jsonify	(user_points=user.points)
 	else:
 		return jsonify(False)
 
@@ -43,7 +40,10 @@ def click():
 		if victory_points:
 			user.add_victory(victory_points)
 
-		points_to_win = utils.get_points_to_next_win(g_counter)
+		if user.points:
+			points_to_win = utils.get_points_to_next_win(g_counter)
+		else:
+			points_to_win = '?' # Hiding game state from 0-point users
 		return jsonify	(
 							user_points=user.points,
 							victory_points=victory_points,
@@ -58,13 +58,19 @@ def reset_points():
 	user = utils.identify_user(request.get_data(), g_users)
 	if user:
 		user.reset_points()
-		points_to_win = utils.get_points_to_next_win(g_counter)
-		return jsonify	(
-							user_points=user.points,
-							points_to_win=points_to_win
-						)
+		return jsonify	(user_points=user.points)
 	else:
 		return jsonify(False)
+
+
+@app.route("/leaderboard", methods=["GET"])
+def show_leaderboard():
+	if not len(g_users): # No users yet, display something else
+		return jsonify(False)
+	user_list = list(g_users.values())
+	user_list.sort(reverse=True)
+	user_list_dicts = [user.public_data_to_dict() for user in user_list]
+	return jsonify(user_list_dicts)
 
 
 if __name__ == "__main__":

@@ -15,7 +15,6 @@ function clickResetPoints() {
 	.then((response) => { return response.json(); })
 	.then((data) => {
 		window.userPoints = data.user_points;
-		window.pointsToWin = data.points_to_win;
 		renderGame();
 	});
 }
@@ -56,7 +55,7 @@ function clickButton() {
 
 function displayGame(data) {
 	window.userPoints = data.user_points;
-	window.pointsToWin = data.points_to_win;
+	window.pointsToWin = "?"; // Hiding initial state
 	renderGame();
 	document.getElementById("click").addEventListener("click", clickButton);
 }
