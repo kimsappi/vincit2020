@@ -1,0 +1,102 @@
+/*
+** Tag selectors
+*/
+
+caption {
+	font-size: 1.5em;
+	font-variant: small-caps;
+}
+
+table {
+	text-align: center;
+}
+
+td, th {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+td:nth-child(2), th:nth-child(2) {
+	text-align: left;
+}
+
+th {
+	font-variant: small-caps;
+}
+
+/*
+** Class selectors
+*/
+
+.point_value {
+	font-size: 2em;
+	min-width: 0em;
+}
+
+.tooltip {
+	color: blue;
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted blue;
+}
+
+.tooltip > .tooltip_text {
+	font-variant: normal;
+	visibility: hidden;
+	background-color: grey;
+	padding: 0.5em;
+	border-radius: 0.5em;
+	text-align: center;
+	position: absolute;
+	z-index: 999;
+	min-width: 7em;
+}
+
+.tooltip:hover > .tooltip_text {
+	visibility: visible;
+}
+
+/*
+** ID selectors
+*/
+
+#click {
+	margin: 2em;
+}
+
+#flex-container {
+	display: none;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+#game {
+	min-width: 30em;
+	text-align: center;
+	font-size: 1.3em;
+	font-variant: small-caps;
+}
+
+#leaderboard {
+	max-height: 20em;
+	overflow-y: auto;
+	margin: 2em;
+}
+
+#logout {
+	display: none;
+	position: relative;
+	margin: 0.5em;
+	right: 0em;
+	text-align: right;
+}
+
+#root {
+	min-width: 0em;
+	margin: auto;
+}
+
+#username {
+	font-weight: bold;
+}

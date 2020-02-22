@@ -57,17 +57,21 @@ function clickButton() {
 }
 
 function displayGame(data) {
+	document.getElementById("root").style.display = "none";
 	window.userPoints = data.user_points;
 	window.pointsToWin = "?"; // Hiding initial state
+	document.getElementById("username").innerHTML = window.username;
 	renderGame();
 	renderLeaderboard(data.leaderboard);
+	document.getElementById("logout").style.display = "block";
+	document.getElementById("flex-container").style.display = "flex";
 	document.getElementById("click").addEventListener("click", clickButton);
 }
 
 function renderGame() {
 	ReactDOM.render(
 		<GameDisplay />,
-		document.getElementById("root")
+		document.getElementById("game")
 	);
 }
 

@@ -34,6 +34,7 @@ class Leaderboard extends React.Component {
 
 		return (
 			<table>
+				<caption>Leaderboard</caption>
 				<tr>
 					<th>#</th>
 					<th>User</th>
