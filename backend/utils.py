@@ -1,5 +1,6 @@
 import hashlib
 import json
+from typing import List
 
 import config
 from User import User
@@ -12,6 +13,15 @@ def check_victory(counter: int) -> int:
 			if breakpoint[1] > points:
 				points = breakpoint[1]
 	return points
+
+
+def get_leaderboard(users: List[dict]):
+	if not len(users): # No users yet, display something else
+		return jsonify(False)
+	user_list = list(users.values())
+	user_list.sort(reverse=True)
+	user_list_dicts = [user.public_data_to_dict() for user in user_list]
+	return user_list_dicts
 
 
 def get_points_to_next_win(counter: int) -> int:
