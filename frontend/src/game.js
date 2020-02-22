@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GameDisplay from './GameDisplay';
+import Leaderboard from './Leaderboard';
 
 function clickResetPoints() {
 	const loginData = {
@@ -16,6 +17,7 @@ function clickResetPoints() {
 	.then((data) => {
 		window.userPoints = data.user_points;
 		renderGame();
+		renderLeaderboard(data.leaderboard);
 	});
 }
 
@@ -23,6 +25,7 @@ function clickResponse(response) {
 	window.userPoints = response.user_points;
 	window.pointsToWin = response.points_to_win;
 	renderGame();
+	renderLeaderboard(response.leaderboard);
 
 	// User ran out of points, ask if they want to restart
 	if (!response.user_points &&
@@ -57,6 +60,7 @@ function displayGame(data) {
 	window.userPoints = data.user_points;
 	window.pointsToWin = "?"; // Hiding initial state
 	renderGame();
+	renderLeaderboard(data.leaderboard);
 	document.getElementById("click").addEventListener("click", clickButton);
 }
 
@@ -64,6 +68,13 @@ function renderGame() {
 	ReactDOM.render(
 		<GameDisplay />,
 		document.getElementById("root")
+	);
+}
+
+function renderLeaderboard(leaderboard) {
+	ReactDOM.render(
+		<Leaderboard leaderboard={leaderboard}/>,
+		document.getElementById("leaderboard")
 	);
 }
 
