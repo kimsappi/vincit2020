@@ -16,7 +16,7 @@ python3 app.py
 ```
 There's also a Dockerfile available, should that be your preference.
 ## Usage
-Point your browser to the app (default <0.0.0.0:5000>) and choose a username and password. If you get an error, the username has already been chosen by someone else.
+Point your browser to the app (default [0.0.0.0:5000](0.0.0.0:5000)) and choose a username and password. If you get an error, the username has already been chosen by someone else.
 
 You start the game with 20 points. You win points every 10/100/500 points (5/40/250 respectively). These values can be configured in `backend/config.py`.
 
