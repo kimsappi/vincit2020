@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import displayGame from './game';
+import LoginForm from './LoginForm';
 
 function loginResponse(data) {
 	if (!data) {
 		ReactDOM.render(
-			<div>Invalid username or password</div>,
+			<>
+				<p>Invalid username or password</p>
+				<LoginForm />
+			</>,
 			document.getElementById('root')
 		);
+		document.getElementById("login").addEventListener("click", submitLogin);
 	}
 	else {
 		displayGame(data);

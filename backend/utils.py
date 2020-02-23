@@ -43,16 +43,16 @@ def identify_user(data: dict, users: dict) -> User:
 	Returns user objects (creates if necessary) that matches user data or None
 	if submitted data is incorrect or incomplete
 	"""
-	#try:
-	data = json.loads(data.decode("utf-8"))
-	username = data.get("username")
-	password = data.get("password")
-	user = users.get(username)
-	if user: # We already have data for the username
-		if not user.validate_password(password):
-			return None
-	else: # Create new user
-		user = User(username=username, password=password, users=users)
-	return user
-	#except:
-		#return None
+	try:
+		data = json.loads(data.decode("utf-8"))
+		username = data.get("username")
+		password = data.get("password")
+		user = users.get(username)
+		if user: # We already have data for the username
+			if not user.validate_password(password):
+				return None
+		else: # Create new user
+			user = User(username=username, password=password, users=users)
+		return user
+	except:
+		return None
