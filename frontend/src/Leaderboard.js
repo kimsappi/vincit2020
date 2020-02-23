@@ -1,5 +1,8 @@
 import React from 'react';
 
+/*
+** A single row to be added to the leaderboard
+*/
 class LeaderboardRow extends React.Component {
 	render() {
 		const row = this.props.row;
@@ -20,6 +23,9 @@ class LeaderboardRow extends React.Component {
 	}
 }
 
+/*
+** Display for the leaderboard
+*/
 class Leaderboard extends React.Component {
 	render() {
 		const leaderboard = this.props.leaderboard;

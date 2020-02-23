@@ -19,6 +19,10 @@ def index():
 
 @app.route("/login", methods=["POST"])
 def begin_game():
+	"""
+	If user authenticated successfully, return necessary data to initialise
+	game state
+	"""
 	user = utils.identify_user(request.get_data(), g_users)
 	if user:
 		points_to_win = utils.get_points_to_next_win(g_counter)
@@ -32,6 +36,7 @@ def begin_game():
 
 @app.route("/click", methods=["POST"])
 def click():
+	""" User clicked button, perform checks and set points accordingly """
 	global g_counter
 
 	user = utils.identify_user(request.get_data(), g_users)
@@ -61,6 +66,7 @@ def click():
 
 @app.route("/reset", methods=["POST"])
 def reset_points():
+	""" User reached 0 points, reset to initial points """
 	user = utils.identify_user(request.get_data(), g_users)
 	if user:
 		user.reset_points()

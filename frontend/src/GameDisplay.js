@@ -1,5 +1,8 @@
 import React from 'react';
 
+/*
+** The main game display
+*/
 class GameDisplay extends React.Component {
 	render() {
 		return (

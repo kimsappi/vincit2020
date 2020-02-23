@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import GameDisplay from './GameDisplay';
 import Leaderboard from './Leaderboard';
 
+/*
+** User wants to reset, send request to server and update game&leaderboard
+*/
 function clickResetPoints() {
 	const loginData = {
 		username: window.username,
@@ -21,6 +24,9 @@ function clickResetPoints() {
 	});
 }
 
+/*
+** Update game&leaderboard after server response
+*/
 function clickResponse(response) {
 	window.userPoints = response.user_points;
 	window.pointsToWin = response.points_to_win;
@@ -35,18 +41,14 @@ function clickResponse(response) {
 	}
 }
 
-function clickUpdatePoints() {
-	if (window.userPoints) {
-		window.userPoints -= 1;
-	}
-}
-
+/*
+** User clicks button, send request to server
+*/
 function clickButton() {
 	const loginData = {
 		username: window.username,
 		password: window.password
 	}
-	clickUpdatePoints();
 
 	fetch("/click", {
 		method: "post",
@@ -57,6 +59,9 @@ function clickButton() {
 	.then((data) => { clickResponse(data); });
 }
 
+/*
+** User logged in successfully, change display from login to game screen
+*/
 function displayGame(data) {
 	document.getElementById("root").style.display = "none";
 	window.userPoints = data.user_points;

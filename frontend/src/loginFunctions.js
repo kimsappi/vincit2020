@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import displayGame from './game';
 import LoginForm from './LoginForm';
 
+/*
+** Proceed to game or or inform user about failed login depending on response
+*/
 function loginResponse(data) {
 	if (!data) {
 		ReactDOM.render(
@@ -19,6 +22,9 @@ function loginResponse(data) {
 	}
 }
 
+/*
+** Submit login details for user identification
+*/
 function submitLogin() {
 	window.username = document.getElementById("login_username").value
 	window.password = document.getElementById("login_password").value
