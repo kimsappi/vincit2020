@@ -28,9 +28,10 @@ function clickResponse(response) {
 	renderLeaderboard(response.leaderboard);
 
 	// User ran out of points, ask if they want to restart
-	if (!response.user_points &&
-		window.confirm("Unfortunately you seem to have 0 points. Restart at 20 points?")) {
-		clickResetPoints();
+	if (!response.user_points) {
+		document.getElementById("points").innerHTML = "0";
+		if (window.confirm("Unfortunately you seem to have 0 points. Restart at 20 points?"))
+			clickResetPoints();
 	}
 }
 

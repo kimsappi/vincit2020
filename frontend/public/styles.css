@@ -1,6 +1,20 @@
 /*
+** Media queries
+*/
+
+@media only screen and (min-width: 910px) {
+	body {
+		max-width: 910px;
+	}
+}
+
+/*
 ** Tag selectors
 */
+
+body {
+	margin: auto;
+}
 
 caption {
 	font-size: 1.5em;
@@ -72,16 +86,19 @@ th {
 }
 
 #game {
-	min-width: 30em;
+	min-width: 300px;
 	text-align: center;
 	font-size: 1.3em;
 	font-variant: small-caps;
+	overflow-x: visible;
 }
 
 #leaderboard {
 	max-height: 20em;
 	overflow-y: auto;
 	margin: 2em;
+	min-width: 300px;
+	overflow-x: auto;
 }
 
 #logout {
@@ -93,8 +110,7 @@ th {
 }
 
 #root {
-	min-width: 0em;
-	margin: auto;
+	margin-left: 1em;
 }
 
 #username {

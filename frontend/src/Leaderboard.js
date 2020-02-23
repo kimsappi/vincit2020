@@ -29,7 +29,7 @@ class Leaderboard extends React.Component {
 		const victories = Object.keys(leaderboard[0].victories);
 		const victoriesJSX = [];
 		for (let victory of victories) {
-			victoriesJSX.push(<th>{victory}</th>);
+			victoriesJSX.push(<th>&#x1F3C6;{victory}</th>);
 		}
 
 		return (

@@ -36,6 +36,7 @@ class User():
 	def reset_points(self) -> bool:
 		if self.points < 1:
 			self.points = config.initial_points
+			self.resets += 1
 			return True
 		else:
 			return False
