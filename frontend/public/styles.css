@@ -97,10 +97,10 @@ th {
 */
 
 #click {
-	margin: 1em;
+	margin-bottom: 1em;
 	border-radius: 50%;
-	padding-top: 1.8em;
 	padding-bottom: 1.8em;
+	padding-top: 1.8em;
 	font-variant: small-caps;
 	background-color: pink;
 	color: forestgreen;
@@ -146,4 +146,8 @@ th {
 
 #username {
 	font-weight: bold;
+}
+
+#victory_points {
+	color: limegreen;
 }

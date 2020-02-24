@@ -39,6 +39,17 @@ function clickResponse(response) {
 		if (window.confirm("Unfortunately you seem to have 0 points. Restart at 20 points?"))
 			clickResetPoints();
 	}
+	
+	// User scored some points, display them, fade result out
+	if (response.victory_points) {
+		let victoryPoints = document.getElementById("victory_points");
+		if (response.victory_points > 0)
+			victoryPoints.innerHTML = "+" + response.victory_points.toString();
+		else
+			victoryPoints.innerHTML = response.victory_points.toString();
+		victoryPoints.style.opacity = 1;
+		fadeOut("victory_points", 3000, 100);
+	}
 }
 
 /*
@@ -72,6 +83,20 @@ function displayGame(data) {
 	document.getElementById("logout").style.display = "block";
 	document.getElementById("flex-container").style.display = "flex";
 	document.getElementById("click").addEventListener("click", clickButton);
+}
+
+/*
+** Fade out element id over time milliseconds in steps steps
+*/
+function fadeOut(id, time, steps) {
+	let element = document.getElementById(id);
+	let initialOpacity = element.style.opacity;
+	let fade = setInterval(() => {
+		if (element.style.opacity > 0)
+			element.style.opacity -= initialOpacity / steps;
+		else
+			clearInterval(fade);
+	}, time / steps);
 }
 
 function renderGame() {

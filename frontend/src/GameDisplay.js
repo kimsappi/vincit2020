@@ -11,6 +11,9 @@ class GameDisplay extends React.Component {
 				<div id="points" class="point_value">
 					{window.userPoints}
 				</div>
+				<div id="victory_points" class="point_value">
+					&nbsp;
+				</div>
 				<div>
 					<input type="button" id="click" value="Click Me!" />
 				</div>
