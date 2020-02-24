@@ -12,7 +12,7 @@ class GameDisplay extends React.Component {
 					{window.userPoints}
 				</div>
 				<div>
-					<input type="button" id="click" value="Click me" />
+					<input type="button" id="click" value="Click Me!" />
 				</div>
 				<div>Clicks to next prize
 					<sup class="tooltip">

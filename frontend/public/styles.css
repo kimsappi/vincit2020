@@ -12,8 +12,18 @@
 ** Tag selectors
 */
 
+a:link, a:visited {
+	color: yellow;
+}
+
+a:hover, a:active {
+	color: chartreuse;
+}
+
 body {
 	margin: auto;
+	background-color: indigo;
+	color: white;
 }
 
 caption {
@@ -48,22 +58,23 @@ th {
 }
 
 .tooltip {
-	color: blue;
+	color: yellow;
 	position: relative;
 	display: inline-block;
-	border-bottom: 1px dotted blue;
+	border-bottom: 1px dotted yellow;
 }
 
 .tooltip > .tooltip_text {
 	font-variant: normal;
 	visibility: hidden;
-	background-color: grey;
+	background-color: darkmagenta;
 	padding: 0.5em;
 	border-radius: 0.5em;
 	text-align: center;
 	position: absolute;
 	z-index: 999;
 	min-width: 7em;
+	color: chartreuse;
 }
 
 .tooltip:hover > .tooltip_text {
@@ -75,7 +86,15 @@ th {
 */
 
 #click {
-	margin: 2em;
+	margin: 1em;
+	border-radius: 50%;
+	padding-top: 1.8em;
+	padding-bottom: 1.8em;
+	font-variant: small-caps;
+	background-color: pink;
+	color: forestgreen;
+	font-size: 1.5em;
+	font-weight: bold;
 }
 
 #flex-container {
@@ -91,12 +110,13 @@ th {
 	font-size: 1.3em;
 	font-variant: small-caps;
 	overflow-x: visible;
+	margin-top: 2em;
 }
 
 #leaderboard {
 	max-height: 20em;
 	overflow-y: auto;
-	margin: 2em;
+	margin-top: 2em;
 	min-width: 300px;
 	overflow-x: auto;
 }
